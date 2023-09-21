@@ -1,25 +1,18 @@
-def return_indexes_for_target(nums_def, target_def):
-    nums_indexes = {}
-    result_def = []
 
-    for i, num in enumerate(nums_def):
-        complement = target_def - num
+def check_if_mono(nums_def):
+    down = True
+    up = True
+    if not nums_def:
+        print("List is empty")
+        return
+    for i in range(len(nums_def) - 1):
+        if nums_def[i] > nums_def[i + 1]:
+            up = False
+        if nums_def[i] < nums_def[i + 1]:
+            down = False
+    return down or up
 
-        if complement in nums_indexes:
-            result_def.append([nums_indexes[complement], i])
 
-        nums_indexes[num] = i
-
-    return result_def
-
-
-nums = [1, 9, 5, 6, 8, 4]
-target = 9
-result = return_indexes_for_target(nums, target)
-
-if not result:
-    print(-1)
-else:
-    for indexes in result:
-        index1, index2 = indexes
-        print({index1}, {index2})
+nums = [2, 3, 4, 5]
+result = check_if_mono(nums)
+print(result)
